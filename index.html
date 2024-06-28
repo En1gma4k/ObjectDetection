@@ -9,7 +9,137 @@
     <!-- Load the COCO-SSD model -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tensorflow-models/coco-ssd/2.2.2/coco-ssd.min.js"></script>
     <style>
-        /* ... (previous styles remain the same) ... */
+        :root {
+    --primary-color: #3498db;
+    --secondary-color: #2c3e50;
+    --background-color: #f7f9fc;
+    --text-color: #2c3e50;
+    --card-background: #ffffff;
+    --border-radius: 12px;
+    --box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+#videoContainer {
+    position: relative;
+    margin-bottom: 30px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    background-color: #000;
+}
+
+#webcam {
+    width: 100%;
+    display: block;
+    border-radius: var(--border-radius);
+}
+
+#canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#detectedObjects {
+    background-color: var(--card-background);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    transition: all 0.3s ease;
+}
+
+#detectedObjects:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+#detectedObjects h2 {
+    margin-top: 0;
+    color: var(--secondary-color);
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+#objectList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#objectList li {
+    margin-bottom: 10px;
+    padding: 15px;
+    background-color: var(--background-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+}
+
+#objectList li:hover {
+    transform: translateX(10px);
+    background-color: #e1eaf3;
+}
+
+#error {
+    color: #e74c3c;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    #detectedObjects h2 {
+        font-size: 1.5rem;
+    }
+}
+
+.loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid var(--primary-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
     </style>
 </head>
 <body>
